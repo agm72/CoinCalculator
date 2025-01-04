@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # Copy necessary files for both the React and .NET projects
-COPY ["coinscalculator.client/nuget.config", "coinscalculator.client/"]
+COPY ["coinscalculator.client", "coinscalculator.client/"]   # Copy the whole directory
 COPY ["CoinsCalculator.Server/CoinsCalculator.Server.csproj", "CoinsCalculator.Server/"]
 COPY ["coinscalculator.client/coinscalculator.client.esproj", "coinscalculator.client/"]
 
