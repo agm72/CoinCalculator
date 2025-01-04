@@ -22,7 +22,12 @@ COPY ["coinscalculator.client/nuget.config", "coinscalculator.client/"]
 COPY ["CoinsCalculator.Server/CoinsCalculator.Server.csproj", "CoinsCalculator.Server/"]
 COPY ["coinscalculator.client/coinscalculator.client.esproj", "coinscalculator.client/"]
 
+# Install Node.js dependencies for React build
+WORKDIR /src/coinscalculator.client
+RUN npm install
+
 # Restore .NET dependencies
+WORKDIR /src
 RUN dotnet restore "./CoinsCalculator.Server/CoinsCalculator.Server.csproj"
 
 # Copy the rest of the application code
@@ -35,10 +40,14 @@ RUN dotnet build "./CoinsCalculator.Server.csproj" -c $BUILD_CONFIGURATION -o /a
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+
+# Publish the .NET project
 RUN dotnet publish "./CoinsCalculator.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Start the application
 ENTRYPOINT ["dotnet", "CoinsCalculator.Server.dll"]
