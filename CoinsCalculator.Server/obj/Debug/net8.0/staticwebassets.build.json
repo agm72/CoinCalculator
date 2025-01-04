@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "KKf9fNHuvtoU41CamYzCvaBUwgRV3af8ZzWCloneQj0=",
+  "Source": "CoinsCalculator.Server",
+  "BasePath": "_content/CoinsCalculator.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\aguom\\source\\repos\\CoinsCalculator\\coinscalculator.client\\coinscalculator.client.esproj",
+      "Version": 2,
+      "Source": "coinscalculator.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
