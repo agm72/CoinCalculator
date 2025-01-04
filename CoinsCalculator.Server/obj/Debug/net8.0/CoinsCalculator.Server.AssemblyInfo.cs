@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoinsCalculator.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9b03ca31ab914dc6e845b0c3df4e3bb7210e837")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb831ba8986b478256ffb327a250c47b807b7498")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoinsCalculator.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoinsCalculator.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
