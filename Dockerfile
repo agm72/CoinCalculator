@@ -1,5 +1,3 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
@@ -7,16 +5,30 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Install Node.js (necessary for React build)
+RUN apt-get update && apt-get install -y \
+    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean
+
+# Copy necessary files for both the React and .NET projects
 COPY ["coinscalculator.client/nuget.config", "coinscalculator.client/"]
 COPY ["CoinsCalculator.Server/CoinsCalculator.Server.csproj", "CoinsCalculator.Server/"]
 COPY ["coinscalculator.client/coinscalculator.client.esproj", "coinscalculator.client/"]
+
+# Restore .NET dependencies
 RUN dotnet restore "./CoinsCalculator.Server/CoinsCalculator.Server.csproj"
+
+# Copy the rest of the application code
 COPY . .
+
+# Build the .NET application
 WORKDIR "/src/CoinsCalculator.Server"
 RUN dotnet build "./CoinsCalculator.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
